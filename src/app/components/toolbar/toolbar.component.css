@@ -1,0 +1,55 @@
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+#alert_content{
+  width: 100%;
+  bottom: 5%;
+  position: fixed;
+  z-index: 999;
+}
+  #alert{
+    font-size: 15px;
+    width: 50%;
+    background-color: #6E6E6E;
+    color: #E6E6E6;
+    text-align: center;
+    height: 7%;
+    margin: 0 auto;
+    border-radius: 5px 5px 5px 5px;
+    font-family: Roboto, sans-serif;
+  }
+#cliente{
+  cursor: pointer;
+}
+  #timeButton{
+    margin-top: -5px;
+   color:purple;
+  }
+
+  @media screen and (max-width: 700px) {
+    #alert_content{
+      width: 100%;
+      bottom: 5%;
+      position: fixed;
+      z-index: 999;
+    }
+
+    #alert{
+      font-size: 15px;
+      width: 90%;
+      background-color: #6E6E6E;
+      color: #E6E6E6;
+      text-align: center;
+      height: 7%;
+      margin: 0 auto;
+      border-radius: 5px 5px 5px 5px;
+    }
+  }
+
+  #email{
+    font-size: 15px;
+  }

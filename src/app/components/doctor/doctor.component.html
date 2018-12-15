@@ -1,0 +1,81 @@
+<form [formGroup]="doctorForm" (ngSubmit)="crearDoctor(formDirective)" *ngIf="objCatalogo" #formDirective="ngForm">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <mat-icon class="example-icon">accessibility</mat-icon>
+      </div>
+      <mat-card-title>Datos</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Tipo Identificación" formControlName="tipoIdentificacion">
+          <mat-option *ngFor="let ti of objCatalogo.tiposIdentificacion" [value]="ti.value">
+            {{ti.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.tipoIdentificacion.hasError('required')">
+          El tipo de identificación es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input #identificacion matInput placeholder="Identificación" formControlName="identificacion" autocomplete="off">
+        <mat-error *ngIf="f.identificacion.hasError('required')">
+          La identificación es requerida
+        </mat-error>
+        <mat-error *ngIf="f.identificacion.hasError('pattern')">
+          La identificación debe ser numerica
+        </mat-error>
+        <mat-error *ngIf="f.identificacion.hasError('maxlength')">
+          La identificación no puede ser mayor a 10 dígitos
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nombres y apellidos" formControlName="nombre" autocomplete="off"  (change)="changeNombre()">
+        <mat-error *ngIf="f.nombre.hasError('required')">
+          El nombre es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Ciudad" formControlName="ciudad" (selectionChange)="changeCiudad()">
+          <mat-option *ngFor="let ci of objCatalogo.ciudades" [value]="ci.value">
+            {{ci.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.ciudad.hasError('required')">
+          La ciudad es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-select placeholder="Clinica" formControlName="clinica" >
+          <mat-option *ngFor="let cl of objCatalogo.clinicas" [value]="cl.value">
+            {{cl.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="f.clinica.hasError('required')">
+          La clinica es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <p *ngIf="img">Firma:</p>
+      <img *ngIf="img" [src]="img" width="200" height="50" style="border-bottom:1px solid;">
+
+      <mat-error *ngIf="error">
+        {{mensaje}}
+      </mat-error>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <img *ngIf="loading" src="assets/img/loading.gif" style="width:30px;" />
+
+      <button mat-button *ngIf="!submitted && !link" (click)="openDialog()" type="button">Firmar</button>
+
+      <button mat-button *ngIf="!submitted && img && !link" type="submit">Crear</button>
+
+    </mat-card-actions>
+  </mat-card>
+</form>

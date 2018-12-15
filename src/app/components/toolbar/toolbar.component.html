@@ -1,0 +1,55 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span id="cliente" routerLink="/home">{{nombreProyecto}}</span>
+    <span class="example-spacer"></span>
+    <!-- <div id="email">{{email}}</div> -->
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/account">
+        <mat-icon>face</mat-icon>
+        <span>Cuenta</span>
+      </button>
+      <!-- <button mat-menu-item [matMenuTriggerFor]="configuration">
+        <mat-icon>settings</mat-icon>
+        <span>Configuración</span>
+      </button> -->
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Salir</span>
+      </button>
+    </mat-menu>
+
+    <mat-menu #configuration="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="InitialTab" matTooltip="La pestaña inicial al entrar a la aplicación">
+        <mat-icon>tab</mat-icon>
+        <span>Pestaña inicial</span>
+      </button>
+    </mat-menu>
+
+    <mat-menu #InitialTab="matMenu">
+      <button mat-menu-item (click)="setTab(0)">
+        <mat-icon>extension</mat-icon>
+        <span>Políticas</span>
+        <mat-icon *ngIf="seeTab1InConfiguraton">done</mat-icon>
+      </button>
+      <button mat-menu-item (click)="setTab(1)">
+        <mat-icon>work</mat-icon>
+        <span>Solicitudes</span>
+        <mat-icon *ngIf="seeTab2InConfiguraton">done</mat-icon>
+      </button>
+    </mat-menu>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<div id="alert_content">
+  <div id="alert" *ngIf="seg!=0">
+    La sesión se cerrara en {{seg}} segundos.
+    <br>
+    <button mat-icon-button id="timeButton" (click)="extend()">
+      Extender
+      <mat-icon>alarm_add</mat-icon>
+    </button>
+  </div>
+</div>

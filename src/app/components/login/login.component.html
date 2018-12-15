@@ -1,0 +1,42 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image">
+        <mat-icon class="example-icon">account_circle</mat-icon>
+      </div>
+
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="f.email.hasError('email') && !f.email.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="f.email.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="f.password.hasError('minlength') && !f.password.hasError('required')">
+          Password must be at least <strong>6 characters</strong>
+        </mat-error>
+        <mat-error *ngIf="f.password.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="error">
+        {{mensaje}}
+      </mat-error>
+      <img *ngIf="loading" src="assets/img/loading.gif" style="width:30px;" />
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" *ngIf="!submitted">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

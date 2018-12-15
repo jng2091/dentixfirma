@@ -1,0 +1,24 @@
+<app-toolbar></app-toolbar>
+<mat-tab-group>
+  <mat-tab *ngIf="enablePdf">
+    <ng-template mat-tab-label>
+      <mat-icon matBadgeColor="primary">work</mat-icon>
+      Generar PDF
+    </ng-template>
+    <app-pdf></app-pdf>
+  </mat-tab>
+  <mat-tab *ngIf="enableDoctor">
+    <ng-template mat-tab-label>
+      <mat-icon matBadgeColor="primary">accessibility</mat-icon>
+      Crear Doctor
+    </ng-template>
+    <app-doctor></app-doctor>
+  </mat-tab>
+  <mat-tab *ngIf="enableDoctor">
+    <ng-template mat-tab-label>
+      <mat-icon matBadgeColor="primary">people</mat-icon>
+      Ver Doctores
+    </ng-template>
+   <app-ldoctor></app-ldoctor>
+  </mat-tab>
+</mat-tab-group>

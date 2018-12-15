@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>{{nombreProyecto}}</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>help</mat-icon>
+        <span>Ayuda</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>email</mat-icon>
+        <span>Contacto</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Login">
+    <app-login></app-login>
+  </mat-tab>
+  <!-- <mat-tab label="Registro" disabled>
+    <app-register></app-register>
+  </mat-tab> -->
+</mat-tab-group>
