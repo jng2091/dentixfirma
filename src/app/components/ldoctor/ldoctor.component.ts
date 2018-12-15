@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, } from '@angular/core';
 import { ObjDoctor } from '../../models/ObjDoctor';
 import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
+import { DataService } from 'src/app/services/data.service';
 
 
 @Component({
@@ -23,37 +24,27 @@ export class LdoctorComponent implements OnInit {
       , 'Nombre'
       , 'Clinica'
       , 'Ciudad'
+      , 'Activo'
       , 'FechaCreacion'
+      , 'Editar'
     ];
 
-  doctores: ObjDoctor[] = [{
-    id: 1,
-    tipoIdentificacion: "CC",
-    identificacion: "1234567",
-    nombre: "PEPE PEREZ",
-    clinica: "CLINICA",
-    ciudad: "CIUDAD",
-    fechaCreacion: "2018-12-12"
+  doctores: ObjDoctor[];
 
-  },
-  {
-    id: 2,
-    tipoIdentificacion: "CC",
-    identificacion: "1234567",
-    nombre: "ANDREA PEREZ",
-    clinica: "CLINICA",
-    ciudad: "CIUDAD",
-    fechaCreacion: "2018-12-12"
+  constructor(public snackBar: MatSnackBar, public dataService: DataService) {
+    this.dataService.verDoctores().subscribe(data => {
+      this.doctores = data;
+      this.dataSource = new MatTableDataSource(this.doctores);
+      this.dataSource.paginator = this.paginator;
 
-  }];
-
-  constructor(public snackBar: MatSnackBar) {
+    }, err => {
+      this.MostarMensaje("Se genero un error. Intente de nuevo");
+    });
 
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.doctores);
-    this.dataSource.paginator = this.paginator;
+
 
 
   }
@@ -69,5 +60,9 @@ export class LdoctorComponent implements OnInit {
     this.snackBar.open(mensaje, "", {
       duration: 3000
     });
+  }
+
+  editar(doctor: ObjDoctor) {
+    this.MostarMensaje("En desarollo");
   }
 }

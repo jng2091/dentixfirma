@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ObjSolicitud } from '../models/ObjSolicitud';
 import { environment } from '../../environments/environment';
 import { ObjCatalogo } from '../models/ObjCatalogo';
+import { ObjDoctor } from '../models/ObjDoctor';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,10 @@ export class DataService {
       , objDoctor
       //, { headers: new HttpHeaders({ "Authorization": "Bearer " + token }) }
     );
+  }
+
+  verDoctores() {
+    return this.httpClient.get<ObjDoctor[]>(this.baseUrl + "/api/values/verDoctores");
   }
 
   // save(id: number, gestion: number) {

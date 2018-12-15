@@ -145,7 +145,6 @@ export class PdfComponent implements OnInit {
     this.loading = true;
 
     this.dataService.verPlantilla(this.f.tipo.value, this.f.tratamiento.value).subscribe(data => {
-      console.log(data);
       var file = new Blob([data], { type: 'application/pdf' });
       var fileURL = URL.createObjectURL(file);
       window.open(fileURL, "_blank");

@@ -5,7 +5,7 @@ export interface ObjDoctor {
     nombre?: string,
     ciudad?: string,
     clinica?: string,
-    firma?: string,
+    activo?: boolean,
     fechaCreacion?: string
 }
 
