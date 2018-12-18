@@ -1,6 +1,6 @@
-import { Component, OnInit,Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
-import { MatSnackBar, MatDialog , MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ObjSolicitud } from '../../models/ObjSolicitud';
 import { DataService } from '../../services/data.service';
 import { ObjCatalogo } from '../../models/ObjCatalogo';
@@ -13,25 +13,25 @@ import { ObjDoctor } from '../..//models/ObjDoctor';
 })
 export class EdoctorComponent implements OnInit {
 
- 
+
   error = false;
   mensaje: string;
   doctorForm: FormGroup;
   submitted: boolean = false;
   loading: boolean = false;
-  objDoctor: ObjSolicitud = {};
+  objDoctor: ObjDoctor = {};
   clinicas;
   objCatalogo: ObjCatalogo;
 
   constructor(private formBuilder: FormBuilder, public snackBar: MatSnackBar
     , public dialog: MatDialog, public dataService: DataService
-    ,public dialogRef: MatDialogRef<EdoctorComponent>, @Inject(MAT_DIALOG_DATA) public data: ObjDoctor) {
+    , public dialogRef: MatDialogRef<EdoctorComponent>, @Inject(MAT_DIALOG_DATA) public data: ObjDoctor) {
 
 
     this.objCatalogo = this.dataService.objCatalogo;
     this.clinicas = this.dataService.objCatalogo.clinicas;
 
-  
+
 
     // this.dataService.objSolicitud.subscribe(data => {
     //   this.objDoctor = data;
@@ -59,7 +59,7 @@ export class EdoctorComponent implements OnInit {
     let ti = this.objCatalogo.tiposIdentificacion.find(c => c.viewValue == this.data.tipoIdentificacion).value;
     let ci = this.objCatalogo.ciudades.find(c => c.viewValue == this.data.ciudad).value;
     let cl = this.objCatalogo.clinicas.find(c => c.viewValue == this.data.clinica).value;
-   
+
 
     this.f.tipoIdentificacion.setValue(ti);
     this.f.identificacion.setValue(this.data.identificacion);
@@ -79,35 +79,24 @@ export class EdoctorComponent implements OnInit {
     this.submitted = true;
     this.loading = true;
 
+    this.objDoctor.id = this.data.id;
     this.objDoctor.tipoIdentificacion = this.f.tipoIdentificacion.value;
     this.objDoctor.identificacion = this.f.identificacion.value;
     this.objDoctor.nombre = this.f.nombre.value.toUpperCase();
     this.objDoctor.ciudad = this.f.ciudad.value;
     this.objDoctor.clinica = this.f.clinica.value;
 
+    this.dataService.actualizarDoctor(this.objDoctor).subscribe(res => {
+      this.submitted = false;
+      this.loading = false;
 
-    console.log("editar");
+      this.dialogRef.close(res);
 
-    // this.dataService.crearDoctor(this.objDoctor).subscribe(data => {
-    //   this.submitted = false;
-    //   this.loading = false;
-    //   
-    //   if (data == 0) {
-    //     this.MostarMensaje("Doctor creado satisfactoriamente!");
-    //     formDirective.resetForm();
-    //     this.doctorForm.reset();
-    //   }
-    //   else {
-    //     this.mensaje = "Se ha generado un error. Intente de nuevo"
-    //     this.error = true
-    //   }
-
-    // }, err => {
-    //   this.mensaje = "Se ha generado un error. Intente de nuevo"
-    //   this.submitted = false;
-    //   this.loading = false;
-    //   this.error = true
-    // });
+    }, err => {
+      this.submitted = false;
+      this.loading = false;
+      this.MostarMensaje("Se genero un error. Intente de nuevo");
+    });
 
   }
 

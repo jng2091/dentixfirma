@@ -65,6 +65,14 @@ export class DataService {
     );
   }
 
+  actualizarDoctor(objDoctor: ObjDoctor) {
+
+    return this.httpClient.post<ObjDoctor>(this.baseUrl + "/api/values/actualizarDoctor"
+      , objDoctor
+      //, { headers: new HttpHeaders({ "Authorization": "Bearer " + token }) }
+    );
+  }
+
   verDoctores() {
     return this.httpClient.get<ObjDoctor[]>(this.baseUrl + "/api/values/verDoctores");
   }

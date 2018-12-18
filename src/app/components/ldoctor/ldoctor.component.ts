@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, } from '@angular/core';
 import { ObjDoctor } from '../../models/ObjDoctor';
-import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar,MatDialog } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material';
 import { DataService } from 'src/app/services/data.service';
 import { EdoctorComponent } from '../edoctor/edoctor.component';
 
@@ -32,7 +32,7 @@ export class LdoctorComponent implements OnInit {
 
   doctores: ObjDoctor[];
 
-  constructor(public snackBar: MatSnackBar, public dataService: DataService,public dialog: MatDialog,) {
+  constructor(public snackBar: MatSnackBar, public dataService: DataService, public dialog: MatDialog, ) {
     this.dataService.verDoctores().subscribe(data => {
       this.doctores = data;
       this.dataSource = new MatTableDataSource(this.doctores);
@@ -74,9 +74,15 @@ export class LdoctorComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result)
-        console.log(result);
+      if (result) {
+        let updateItem = this.doctores.find(d => d.id = result.id);
+        let index = this.doctores.indexOf(updateItem);
+        this.doctores[index] = result;
+        this.dataSource = new MatTableDataSource(this.doctores);
+        this.dataSource.paginator = this.paginator;
+        this.MostarMensaje("Doctor actualizado!");
+      }
     });
-    
+
   }
 }
