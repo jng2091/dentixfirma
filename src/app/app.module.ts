@@ -19,6 +19,7 @@ import { InterceptService } from './services/intercept.service';
 import { PdfComponent } from './components/pdf/pdf.component';
 import { DoctorComponent } from './components/doctor/doctor.component';
 import { LdoctorComponent } from './components/ldoctor/ldoctor.component';
+import { EdoctorComponent } from './components/edoctor/edoctor.component';
 
 const routes: Routes = [
   { path: "auth", component: AuthComponent, canActivate: [NoAuthGuard] },
@@ -41,9 +42,10 @@ const routes: Routes = [
     FirmaDialog,
     PdfComponent,
     DoctorComponent,
-    LdoctorComponent
+    LdoctorComponent,
+    EdoctorComponent
   ],
-  entryComponents: [FirmaDialog],
+  entryComponents: [FirmaDialog,EdoctorComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

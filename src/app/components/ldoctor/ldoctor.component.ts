@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, } from '@angular/core';
 import { ObjDoctor } from '../../models/ObjDoctor';
-import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatSnackBar,MatDialog } from '@angular/material';
 import { DataService } from 'src/app/services/data.service';
+import { EdoctorComponent } from '../edoctor/edoctor.component';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class LdoctorComponent implements OnInit {
 
   doctores: ObjDoctor[];
 
-  constructor(public snackBar: MatSnackBar, public dataService: DataService) {
+  constructor(public snackBar: MatSnackBar, public dataService: DataService,public dialog: MatDialog,) {
     this.dataService.verDoctores().subscribe(data => {
       this.doctores = data;
       this.dataSource = new MatTableDataSource(this.doctores);
@@ -63,6 +64,19 @@ export class LdoctorComponent implements OnInit {
   }
 
   editar(doctor: ObjDoctor) {
-    this.MostarMensaje("En desarollo");
+
+    const dialogRef = this.dialog.open(EdoctorComponent, {
+      // width: '100%',
+      // height: '100%',
+      // maxWidth: "100%",
+      // maxHeight: "100%",
+      data: doctor
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result)
+        console.log(result);
+    });
+    
   }
 }
