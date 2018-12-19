@@ -28,6 +28,7 @@ export class LdoctorComponent implements OnInit {
       , 'Activo'
       , 'FechaCreacion'
       , 'Editar'
+      , 'ACDE'
     ];
 
   doctores: ObjDoctor[];
@@ -75,7 +76,7 @@ export class LdoctorComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        let updateItem = this.doctores.find(d => d.id = result.id);
+        let updateItem = this.doctores.find(d => d.id === result.id);
         let index = this.doctores.indexOf(updateItem);
         this.doctores[index] = result;
         this.dataSource = new MatTableDataSource(this.doctores);
@@ -83,6 +84,23 @@ export class LdoctorComponent implements OnInit {
         this.MostarMensaje("Doctor actualizado!");
       }
     });
+
+  }
+
+  ACDE(doctor: ObjDoctor) {
+
+    this.dataService.activarDoctor(doctor.id, !doctor.activo).subscribe(data => {
+      if (data == 0) {
+        let acde = doctor.activo ? "desactivado" : "activado";
+        this.MostarMensaje(`Doctor ${acde}`);
+        doctor.activo = !doctor.activo;
+      } else {
+        this.MostarMensaje("Se genero un error. Intente de nuevo");
+      }
+    }, err => {
+      this.MostarMensaje("Se genero un error. Intente de nuevo");
+    });
+
 
   }
 }

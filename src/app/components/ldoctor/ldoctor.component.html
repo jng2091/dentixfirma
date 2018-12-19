@@ -65,6 +65,16 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="ACDE">
+        <th mat-header-cell *matHeaderCellDef> Activar/Desactivar </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="ACDE(row)">
+            <mat-icon>{{row.activo?"remove_circle":"add_circle"}}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+
       <!-- Name Column -->
       <!-- <ng-container matColumnDef="GestionL">
         <th mat-header-cell *matHeaderCellDef class="ges"> Gestión </th>

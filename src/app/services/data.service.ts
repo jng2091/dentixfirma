@@ -73,6 +73,10 @@ export class DataService {
     );
   }
 
+  activarDoctor(id,activo) {
+    return this.httpClient.get<number>(this.baseUrl +  `/api/values/activarDoctor/?id=${id}&activo=${activo}`);
+  }
+
   verDoctores() {
     return this.httpClient.get<ObjDoctor[]>(this.baseUrl + "/api/values/verDoctores");
   }
