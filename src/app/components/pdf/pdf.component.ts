@@ -138,7 +138,7 @@ export class PdfComponent implements OnInit {
   verPlantilla() {
 
     if (!this.f.tipo.valid || !this.f.tratamiento.valid) {
-      this.MostarMensaje("Ingrese el tipo y el tratamiento");
+      this.MostrarMensaje("Ingrese el tipo y el tratamiento");
       return;
     }
     this.submitted = true;
@@ -177,7 +177,7 @@ export class PdfComponent implements OnInit {
     this.f.nombre.setValue(this.f.nombre.value.toUpperCase());
   }
 
-  MostarMensaje(mensaje) {
+  MostrarMensaje(mensaje) {
     this.snackBar.open(mensaje, "", {
       duration: 3000
     });

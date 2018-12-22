@@ -1,0 +1,38 @@
+mat-card{
+    max-width: 90%;
+    margin: 10px auto;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  table{
+      margin: 20px auto;
+      width: 50%;
+  }
+
+  .tablaConsultas{
+    margin: 10px auto;
+      width: 50%;
+      
+      text-align: center;
+  }
+
+  .titulo{
+    color: white;
+    background-color: #7b1fa2;
+  }
+
+.titulos{
+  background-color: #dcdcdc;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.textos{
+  color: black;
+  font-size: 13px;
+}

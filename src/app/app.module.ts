@@ -20,6 +20,7 @@ import { PdfComponent } from './components/pdf/pdf.component';
 import { DoctorComponent } from './components/doctor/doctor.component';
 import { LdoctorComponent } from './components/ldoctor/ldoctor.component';
 import { EdoctorComponent } from './components/edoctor/edoctor.component';
+import { LpdfComponent } from './components/lpdf/lpdf.component';
 
 const routes: Routes = [
   { path: "auth", component: AuthComponent, canActivate: [NoAuthGuard] },
@@ -43,7 +44,8 @@ const routes: Routes = [
     PdfComponent,
     DoctorComponent,
     LdoctorComponent,
-    EdoctorComponent
+    EdoctorComponent,
+    LpdfComponent
   ],
   entryComponents: [FirmaDialog,EdoctorComponent],
   imports: [

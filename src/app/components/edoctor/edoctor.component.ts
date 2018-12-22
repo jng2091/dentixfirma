@@ -95,7 +95,7 @@ export class EdoctorComponent implements OnInit {
     }, err => {
       this.submitted = false;
       this.loading = false;
-      this.MostarMensaje("Se genero un error. Intente de nuevo");
+      this.MostrarMensaje("Se genero un error. Intente de nuevo");
     });
 
   }
@@ -110,7 +110,7 @@ export class EdoctorComponent implements OnInit {
     this.doctorForm.controls.clinica.enable();
   }
 
-  MostarMensaje(mensaje) {
+  MostrarMensaje(mensaje) {
     this.snackBar.open(mensaje, "", {
       duration: 3000
     });

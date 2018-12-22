@@ -78,7 +78,7 @@ export class DoctorComponent implements OnInit {
       this.loading = false;
       this.img = null;
       if (data == 0) {
-        this.MostarMensaje("Doctor creado satisfactoriamente!");
+        this.MostrarMensaje("Doctor creado satisfactoriamente!");
         formDirective.resetForm();
         this.doctorForm.reset();
       }
@@ -109,7 +109,7 @@ export class DoctorComponent implements OnInit {
     this.doctorForm.controls.clinica.enable();
   }
 
-  MostarMensaje(mensaje) {
+  MostrarMensaje(mensaje) {
     this.snackBar.open(mensaje, "", {
       duration: 3000
     });

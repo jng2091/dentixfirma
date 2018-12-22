@@ -1,0 +1,129 @@
+<table>
+  <tr>
+    <td>
+      <mat-form-field class="example-full-width">
+        <input #identificacion matInput placeholder="Identificación" autocomplete="off">
+      </mat-form-field>
+    </td>
+    <td style="max-width: fit-content;width: 10px;">
+      <img *ngIf="loading" src="assets/img/loading.gif" style="width:30px;" />
+      <button *ngIf="!submitted" mat-raised-button type="button" (click)="buscar(identificacion)">Buscar</button>
+    </td>
+  </tr>
+</table>
+<p *ngIf="mensaje" style="text-align: center;color: red;">{{mensaje}}</p>
+<table *ngFor="let o of objConsultas" class="tablaConsultas">
+  <tr>
+    <td class="titulo" colspan="2">PDF #{{o.id}}</td>
+  </tr>
+
+  <tr>
+    <td class="titulos">
+      TipoIdentificación
+    </td>
+    <td class="titulos">
+      Identificación
+    </td>
+  </tr>
+  <tr>
+    <td class="textos">
+      {{o.tipoIdentificacion}}
+    </td>
+    <td class="textos">
+      {{o.identificacion}}
+    </td>
+  </tr>
+
+  <tr>
+    <td class="titulos" colspan="2">Nombre</td>
+  </tr>
+  <tr>
+    <td class="textos" colspan="2">
+      {{o.nombre}}
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="titulos" colspan="2">NoHistClinica</td>
+  </tr>
+  <tr>
+    <td class="textos" colspan="2">
+      {{o.noHistClinica}}
+    </td>
+  </tr>
+
+  <tr>
+    <td class="titulos">
+      Tipo
+    </td>
+    <td class="titulos">
+      Tratamiento
+    </td>
+  </tr>
+  <tr>
+    <td class="textos">
+      {{o.tipo}}
+    </td>
+    <td class="textos">
+      {{o.tratamiento}}
+    </td>
+  </tr>
+
+  <tr>
+    <td class="titulos" colspan="2">Observación</td>
+  </tr>
+  <tr>
+    <td class="textos" colspan="2">
+      {{o.observacion}}
+    </td>
+  </tr>
+
+  <tr>
+    <td class="titulos">
+      Clinica
+    </td>
+    <td class="titulos">
+      Ciudad
+    </td>
+  </tr>
+  <tr>
+    <td class="textos">
+      {{o.clinica}}
+    </td>
+    <td class="textos">
+      {{o.ciudad}}
+    </td>
+  </tr>
+
+  <tr>
+    <td class="titulos" colspan="2">Doctor</td>
+  </tr>
+  <tr>
+    <td class="textos" colspan="2">
+      {{o.doctor}}
+    </td>
+  </tr>
+
+
+  <tr>
+    <td class="titulos">CreadoPor</td>
+    <td class="titulos">FechaCreación</td>
+  </tr>
+  <tr>
+    <td class="textos">
+      {{o.usuario}}
+    </td>
+    <td class="textos">
+      {{o.fechaControl}}
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2">
+      <img *ngIf="loading2" src="assets/img/loading.gif" style="width:30px;" />
+      <button *ngIf="!submitted2" mat-raised-button type="button" (click)="verPdf(o)">Ver PDF</button>
+    </td>
+  </tr>
+
+</table>

@@ -40,7 +40,7 @@ export class LdoctorComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
 
     }, err => {
-      this.MostarMensaje("Se genero un error. Intente de nuevo");
+      this.MostrarMensaje("Se genero un error. Intente de nuevo");
     });
 
   }
@@ -58,7 +58,7 @@ export class LdoctorComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  MostarMensaje(mensaje) {
+  MostrarMensaje(mensaje) {
     this.snackBar.open(mensaje, "", {
       duration: 3000
     });
@@ -81,7 +81,7 @@ export class LdoctorComponent implements OnInit {
         this.doctores[index] = result;
         this.dataSource = new MatTableDataSource(this.doctores);
         this.dataSource.paginator = this.paginator;
-        this.MostarMensaje("Doctor actualizado!");
+        this.MostrarMensaje("Doctor actualizado!");
       }
     });
 
@@ -92,13 +92,13 @@ export class LdoctorComponent implements OnInit {
     this.dataService.activarDoctor(doctor.id, !doctor.activo).subscribe(data => {
       if (data == 0) {
         let acde = doctor.activo ? "desactivado" : "activado";
-        this.MostarMensaje(`Doctor ${acde}`);
+        this.MostrarMensaje(`Doctor ${acde}`);
         doctor.activo = !doctor.activo;
       } else {
-        this.MostarMensaje("Se genero un error. Intente de nuevo");
+        this.MostrarMensaje("Se genero un error. Intente de nuevo");
       }
     }, err => {
-      this.MostarMensaje("Se genero un error. Intente de nuevo");
+      this.MostrarMensaje("Se genero un error. Intente de nuevo");
     });
 
 

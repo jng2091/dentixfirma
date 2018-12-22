@@ -7,6 +7,13 @@
     </ng-template>
     <app-pdf></app-pdf>
   </mat-tab>
+  <mat-tab *ngIf="enablePdf">
+    <ng-template mat-tab-label>
+      <mat-icon matBadgeColor="primary">assignment</mat-icon>
+      Ver PDFs
+    </ng-template>
+    <app-lpdf></app-lpdf>
+  </mat-tab>
   <mat-tab *ngIf="enableDoctor">
     <ng-template mat-tab-label>
       <mat-icon matBadgeColor="primary">accessibility</mat-icon>

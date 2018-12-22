@@ -4,6 +4,7 @@ import { ObjSolicitud } from '../models/ObjSolicitud';
 import { environment } from '../../environments/environment';
 import { ObjCatalogo } from '../models/ObjCatalogo';
 import { ObjDoctor } from '../models/ObjDoctor';
+import { ObjConsulta } from '../models/ObjConsulta';
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +53,7 @@ export class DataService {
       //'responseType'  : 'blob' as 'json'        //This also worked
     };
     return this.httpClient.get<any>(this.baseUrl + `/api/values/verPlantilla/?tipo=${tipo}&tratamiento=${tratamiento}`
-    ,httpOptions
+      , httpOptions
       //, { headers: new HttpHeaders({ "Authorization": "Bearer " + token }) }
     );
   }
@@ -73,12 +74,27 @@ export class DataService {
     );
   }
 
-  activarDoctor(id,activo) {
-    return this.httpClient.get<number>(this.baseUrl +  `/api/values/activarDoctor/?id=${id}&activo=${activo}`);
+  activarDoctor(id, activo) {
+    return this.httpClient.get<number>(this.baseUrl + `/api/values/activarDoctor/?id=${id}&activo=${activo}`);
   }
 
   verDoctores() {
     return this.httpClient.get<ObjDoctor[]>(this.baseUrl + "/api/values/verDoctores");
+  }
+
+  verConsultas(identificacion) {
+    return this.httpClient.get<ObjConsulta[]>(this.baseUrl + `/api/values/verConsultas/?identificacion=${identificacion}`);
+  }
+
+  verPdf(id) {
+    const httpOptions = {
+      'responseType': 'arraybuffer' as 'json'
+      //'responseType'  : 'blob' as 'json'        //This also worked
+    };
+    return this.httpClient.get<any>(this.baseUrl + `/api/values/verPdf/?id=${id}`
+      , httpOptions
+      //, { headers: new HttpHeaders({ "Authorization": "Bearer " + token }) }
+    );
   }
 
   // save(id: number, gestion: number) {

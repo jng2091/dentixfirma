@@ -55,7 +55,7 @@ export class AccountComponent implements OnInit {
       if (res.idError == 0) {
         this.loading = false;
         this.error = false;
-        this.MostarMensaje("La contraseña se cambio correctamente");
+        this.MostrarMensaje("La contraseña se cambio correctamente");
         this.router.navigate(["/home"]);
         return;
       }
@@ -69,7 +69,7 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  MostarMensaje(mensaje) {
+  MostrarMensaje(mensaje) {
     this.snackBar.open(mensaje, "", {
       duration: 3000
     });
