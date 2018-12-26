@@ -17,5 +17,8 @@ table {
     width: 200px;
   }
 
+  .gris .mat-cell{
+   color: #D1D0D0;
+  }
 
 
