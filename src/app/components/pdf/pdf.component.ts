@@ -184,7 +184,7 @@ export class PdfComponent implements OnInit {
   }
 
   changeCiudad() {
-    this.objCatalogo.clinicas = this.clinicas.filter(c => c.parent == this.f.ciudad.value);
+    this.clinicas = this.objCatalogo.clinicas.filter(c => c.parent == this.f.ciudad.value);
     this.f.clinica.setValue(null);
     this.f.doctor.setValue(null);
     this.f.clinica.enable();

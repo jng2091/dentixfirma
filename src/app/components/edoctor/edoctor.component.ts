@@ -30,8 +30,7 @@ export class EdoctorComponent implements OnInit {
 
     this.objCatalogo = this.dataService.objCatalogo;
     this.clinicas = this.dataService.objCatalogo.clinicas;
-
-
+    
 
     // this.dataService.objSolicitud.subscribe(data => {
     //   this.objDoctor = data;
@@ -60,6 +59,7 @@ export class EdoctorComponent implements OnInit {
     let ci = this.objCatalogo.ciudades.find(c => c.viewValue == this.data.ciudad).value;
     let cl = this.objCatalogo.clinicas.find(c => c.viewValue == this.data.clinica).value;
 
+    this.clinicas = this.objCatalogo.clinicas.filter(c => c.parent == ci);
 
     this.f.tipoIdentificacion.setValue(ti);
     this.f.identificacion.setValue(this.data.identificacion);
@@ -105,7 +105,7 @@ export class EdoctorComponent implements OnInit {
   }
 
   changeCiudad() {
-    this.objCatalogo.clinicas = this.clinicas.filter(c => c.parent == this.f.ciudad.value);
+    this.clinicas = this.objCatalogo.clinicas.filter(c => c.parent == this.f.ciudad.value);
     this.f.clinica.setValue(null);
     this.doctorForm.controls.clinica.enable();
   }

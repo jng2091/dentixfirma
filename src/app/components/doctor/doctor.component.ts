@@ -58,7 +58,7 @@ export class DoctorComponent implements OnInit {
   get f() { return this.doctorForm.controls; }
 
   crearDoctor(formDirective) {
-
+    this.error = false;
     if (this.doctorForm.invalid || !this.img) {
       return;
     }
@@ -82,6 +82,10 @@ export class DoctorComponent implements OnInit {
         formDirective.resetForm();
         this.doctorForm.reset();
       }
+      else if (data == 2) {
+        this.mensaje = `Ya existe un doctor con la identificación ${this.objDoctor.identificacion}`;
+        this.error = true;
+      }
       else {
         this.mensaje = "Se ha generado un error. Intente de nuevo"
         this.error = true
@@ -104,7 +108,7 @@ export class DoctorComponent implements OnInit {
   }
 
   changeCiudad() {
-    this.objCatalogo.clinicas = this.clinicas.filter(c => c.parent == this.f.ciudad.value);
+    this.clinicas = this.objCatalogo.clinicas.filter(c => c.parent == this.f.ciudad.value);
     this.f.clinica.setValue(null);
     this.doctorForm.controls.clinica.enable();
   }

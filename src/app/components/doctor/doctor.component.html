@@ -52,7 +52,7 @@
 
       <mat-form-field class="example-full-width">
         <mat-select placeholder="Clinica" formControlName="clinica" >
-          <mat-option *ngFor="let cl of objCatalogo.clinicas" [value]="cl.value">
+          <mat-option *ngFor="let cl of clinicas" [value]="cl.value">
             {{cl.viewValue}}
           </mat-option>
         </mat-select>
